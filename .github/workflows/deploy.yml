@@ -1,32 +1,28 @@
-name: CICD for deploy project on vercel
+name: Deploy React App to Vercel
 
 on:
-    push:
-        branches:
-            - master
-
-
+  push:
+    branches:
+      - master  # Change to 'main' if your default branch is 'main'
 
 jobs:
-    deploy:
-        runs-on: ubuntu-latest
-        
+  deploy:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout Repository
-              uses: actions/checkout@v2
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v2
-              with:
-                  node-version: 18
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
 
-            - name: Install Dependencies
-              run: npm install
+      - name: Install Dependencies
+        run: npm install
 
+      - name: Build Project
+        run: npm run build
 
-            - name: Build Project
-              run: npm run build 
-
-            - name: Deploy to Vercel
-              run: npx vercel --prod --token ${{ secrets.SKYLAB_REACT }}
+      - name: Deploy to Vercel
+        run: npx vercel --prod --yes --token ${{ secrets.SKYLAB_REACT }}
