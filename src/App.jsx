@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <div>
-        <h1>Hello My Name is Shelendra Singh ARPITA</h1>
+        <h1>Hello My Name is Shelendra Singh kapil singh</h1>
       </div>
     </>
   )
